@@ -27,11 +27,11 @@ def getUserInfo():
         passwords = config['Information']['password'].split(',')
         emails = config['Information']['email'].split(',')
 
-        print('get userdata success')
+        print('获取用户信息成功')
         return list(zip(usernames, passwords, emails))
 
     except Exception as e:
-        print('get userdata failed\n %s' % e)
+        print('获取用户信息失败\n %s' % e)
         return None
 
 
@@ -44,7 +44,7 @@ def getSMTPInfo():
         password = config['SMTP']['password']
         host = config['SMTP']['host']
 
-        print('get SMTP info success')
+        # print('get SMTP info success')
         return user, password, host
 
     except Exception as e:
@@ -81,7 +81,7 @@ def send_email(status, info, email_address):
         email_content = [info]
         yagmail_server.send(to=email_name, subject=email_title, contents=email_content)
         yagmail_server.close()
-        print("email finished")
+        print("邮件提醒成功")
     except Exception as e:
         print(e)
 
@@ -108,11 +108,11 @@ def process(userdata, email_address):
         # 结束后发送邮件
         if json.loads(save_res)['m'] == '操作成功':
             send_email("[签到成功] Covid-19中国石油大学(华东)疫情防控自动化填报",
-                       user[0] + " " + time.strftime('%Y.%m.%d', time.localtime(time.time())) + " " + '签到结果:' + json.loads(save_res)['m'],
+                       time.strftime('%Y.%m.%d', time.localtime(time.time())) + " " + user[0] + " " + '签到结果:' + json.loads(save_res)['m'],
                        email_address)
         else:
             send_email("[签到失败] Covid-19中国石油大学(华东)疫情防控自动化填报",
-                       user[0] + " " + time.strftime('%Y.%m.%d', time.localtime(time.time())) + " " + '签到结果:' + json.loads(save_res)['m'],
+                       time.strftime('%Y.%m.%d', time.localtime(time.time())) + " " + user[0] + " " + '签到结果:' + json.loads(save_res)['m'],
                        email_address)
 
 
