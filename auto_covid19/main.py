@@ -107,12 +107,12 @@ def process(userdata, email_address):
     if email_address:
         # 结束后发送邮件
         if json.loads(save_res)['m'] == '操作成功':
-            send_email("[success] covid-19 submission",
-                       user[0] + " " + time.strftime('%Y.%m.%d', time.localtime(time.time())) + " " + "签到成功",
+            send_email("[签到成功] Covid-19中国石油大学(华东)疫情防控自动化填报",
+                       user[0] + " " + time.strftime('%Y.%m.%d', time.localtime(time.time())) + " " + '签到结果:' + json.loads(save_res)['m'],
                        email_address)
         else:
-            send_email("[failed] covid-19 submission",
-                       user[0] + " " + time.strftime('%Y.%m.%d', time.localtime(time.time())) + " " + "签到失败",
+            send_email("[签到失败] Covid-19中国石油大学(华东)疫情防控自动化填报",
+                       user[0] + " " + time.strftime('%Y.%m.%d', time.localtime(time.time())) + " " + '签到结果:' + json.loads(save_res)['m'],
                        email_address)
 
 
