@@ -122,7 +122,7 @@ if __name__ == "__main__":
     # print(userinfos)
 
     for user in userinfos:
-        print('账号:' + user[0] + ' 密码:' + user[0] + ' 邮箱:' + user[2])
+        print('账号:' + user[0] + ' 密码:' + user[1] + ' 邮箱:' + user[2])
         user_data = {
             'username': user[0],
             'password': user[1]
