@@ -1,5 +1,5 @@
 # coding=utf-8
-import requests, time, json, configparser, random, os, yagmail
+import requests, time, json, configparser, random, os, yagmail,MySQLdb
 
 # python2支持
 # import sys
@@ -21,14 +21,18 @@ def get_time():
 # 帐号密码信息读取
 def getUserInfo():
     try:
-        config = configparser.ConfigParser()
-        config.read('./info.ini')
-        usernames = config['Information']['username'].split(',')
-        passwords = config['Information']['password'].split(',')
-        emails = config['Information']['email'].split(',')
-
+        db = MySQLdb.connect("localhost", "****", "****", "autocheck", charset='utf8')
+        cursor = db.cursor()
+        cursor.execute("select username,password,email  from user_tbl")
+        data = cursor.fetchall()
+        list = []
+        for row in data:
+            list.append((row[0], row[1], row[2]))
+            # print(list)
+        db.close()
+        # print(list)
         print('获取用户信息成功')
-        return list(zip(usernames, passwords, emails))
+        return list
 
     except Exception as e:
         print('获取用户信息失败\n %s' % e)
@@ -128,4 +132,5 @@ if __name__ == "__main__":
             'password': user[1]
         }
         # print(user_data)
+        # login(user_data)
         process(user_data, user[2])
