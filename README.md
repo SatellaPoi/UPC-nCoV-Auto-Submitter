@@ -19,13 +19,28 @@ yagmail
 2. 修改`info.ini`为自己的信息，`[Information]`中修改自己的账号，密码，邮件(可选，打卡完成邮件提醒),支持多账号打卡，填写时`,`隔开，`[SMTP]`处修改为自己的SMTP信息
 3. 执行` python main.py `即可完成自动填报
 
+## 简易web页面部署
+
+1. 部署LNMP环境
+2. 安装Fastadmin面板
+3. 使用Fastadmin提供的CURD生成
+
+```
+php think crud -t user_tbl -c account/Account
+php think menu -c account/Account
+```
+
 ## 服务器定时任务
-参考crontab 定时任务的配置
+
+0 7 * * * root /your/path/to/python /your/path/to/main.py
+每天早上7点执行脚本
 
 ## TODO
 - [x] 基本功能
 - [x] 邮件提醒
-- [ ] vx公众号提醒
+- [x] 数据库支持
+- [x] web页面支持
 
 ## History
-- 2020/12/8 基本功能和邮件功能实现
+- 2020/12/08 基本功能和邮件功能实现
+- 2021/03/02 web页面和数据库支持实现 
