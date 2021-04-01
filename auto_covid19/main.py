@@ -134,8 +134,7 @@ if __name__ == "__main__":
             }
             # print(user_data)
             # login(user_data)
-            is_fail = process(user_data, user[2])
-            fail_cnt = fail_cnt + is_fail
+            process(user_data, user[2])
         except Exception as e:
             print(e)
             fail_cnt = fail_cnt +1
