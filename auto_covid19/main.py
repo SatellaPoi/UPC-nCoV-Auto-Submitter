@@ -127,10 +127,16 @@ if __name__ == "__main__":
 
     for user in userinfos:
         print('账号:' + user[0] + ' 密码:' + user[1] + ' 邮箱:' + user[2])
-        user_data = {
+        try:
+            user_data = {
             'username': user[0],
             'password': user[1]
-        }
-        # print(user_data)
-        # login(user_data)
-        process(user_data, user[2])
+            }
+            # print(user_data)
+            # login(user_data)
+            is_fail = process(user_data, user[2])
+            fail_cnt = fail_cnt + is_fail
+        except Exception as e:
+            print(e)
+            fail_cnt = fail_cnt +1
+            print(fail_cnt)
